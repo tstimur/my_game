@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LotteryGameMatches extends Model
+class LotteryGameMatchUser extends Model
 {
     use HasFactory;
 
     protected $connection = 'pgsql';
-    protected $table = 'lottery_games';
+    protected $table = 'lottery_game_match_users';
 
     protected $fillable = [
         'id',
-        'name',
-        'game_count',
-        'reward_points'
+        'user_id',
+        'lottery_game_match_id'
     ];
 }
