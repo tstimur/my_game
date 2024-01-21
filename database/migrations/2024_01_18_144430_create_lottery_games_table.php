@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lottery_games', function (Blueprint $table) {
             $table->id();
-            $table->char('name', 100);
+            $table->string('name', 100);
             $table->integer('gamer_count');
             $table->integer('reward_points');
             $table->timestamps();

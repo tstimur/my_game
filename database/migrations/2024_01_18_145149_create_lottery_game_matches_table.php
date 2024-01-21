@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->time('start_time');
             $table->foreignId('winner_id')->references('id')->on('users');
+            $table->boolean('is_finished');
             $table->timestamps();
         });
     }

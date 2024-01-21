@@ -17,6 +17,23 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-
+Route::group(['namespace' => 'Controllers', 'middleware' => 'jwt.auth'], function () {
+    Route::get('/lottery_games', [\App\Http\Controllers\LotteryGameController::class, 'getAllGames']);
+});
 Route::post('/users/register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::get('/lottery_games', [\App\Http\Controllers\LotteryGameController::class, 'getAllGames']);
+
+
+Route::group([
+
+    'middleware' => 'api',
+    'namespace' => 'App\Http\Controllers',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('register', 'AuthController@register');
+    Route::post('me', 'AuthController@me');
+
+});
