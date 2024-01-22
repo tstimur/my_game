@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('game_id')->references('id')->on('lottery_games');
             $table->date('start_date');
             $table->time('start_time');
-            $table->foreignId('winner_id')->references('id')->on('users');
+            $table->foreignId('winner_id')->nullable()->references('id')->on('users');
             $table->boolean('is_finished');
             $table->timestamps();
         });

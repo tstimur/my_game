@@ -19,7 +19,7 @@ class LotteryGameMatchController extends Controller
             $match->game_id = $request->game_id;
             $match->start_date = now()->toDateString();
             $match->start_time = now()->toTimeString();
-            $match->winner_id = "-";
+
             $match->is_finished = false;
             $match->save();
 
