@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $admin = Auth::user();
         if ($admin->is_admin) {
-            $user = User::all();
+            $user = User::with('matchesOfUsers')->get();
             return response()->json($user);
         }
         else {

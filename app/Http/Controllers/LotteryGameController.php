@@ -9,7 +9,7 @@ class LotteryGameController extends Controller
 {
     public function getAllGames()
     {
-        $lotteryGame = LotteryGame::all();
+        $lotteryGame = LotteryGame::with('matches')->get();
         return response()->json($lotteryGame);
     }
 }

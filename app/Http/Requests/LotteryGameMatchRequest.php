@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class RegistrateRequest extends FormRequest
+class LotteryGameMatchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,6 +13,7 @@ class RegistrateRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,14 +22,9 @@ class RegistrateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', Password::min(8)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-            ],
+            'name' => ['required', 'string'],
+            'gamer_count' => ['required', 'integer'],
+            'reward_points' => ['required', 'integer'],
         ];
     }
 }
