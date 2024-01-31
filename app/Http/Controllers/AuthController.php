@@ -48,9 +48,7 @@ class AuthController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'is_admin' => false,
-//            'is_admin' => $request->input('is_admin'),
             'points' => '1000'
-//            'points' => $request->input('points'),
         ]);
 
         return response()->json([

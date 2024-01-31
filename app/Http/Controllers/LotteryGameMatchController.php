@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LotteryGame;
 use App\Models\LotteryGameMatch;
+use App\Models\LotteryGameMatchUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class LotteryGameMatchController extends Controller
                     return response()->json(['error' => 'The match has already been completed.'], 400);
                 }
                 $match->is_finished = true;
-                $match->winner_id = User::inRandomOrder()->first()->id;
+
                 $match->save();
                 return response()->json([
                     "message" => "Match finished."

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\MatchFinishEvent;
+use App\Listeners\CalculationWinnerPointsListener;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +21,9 @@ class LotteryGameMatch extends Model
         'start_time',
         'winner_id',
         'is_finished'
+    ];
+
+    protected $dispatchesEvents = [
+        'updating' => MatchFinishEvent::class,
     ];
 }

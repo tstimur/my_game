@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Listeners\CalculationWinnerPointsListener;
+use App\Listeners\CountOfRecordHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\RecordUserOnMatchEventHandler;
+use App\Listeners\ChooseMatchWinnerListener;
+use App\Events\RecordUserOnMatchEvent;
+use App\Events\MatchFinishEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        RecordUserOnMatchEvent::class => [
+            RecordUserOnMatchEventHandler::class,
+            CountOfRecordHandler::class
+        ],
+        MatchFinishEvent::class => [
+            ChooseMatchWinnerListener::class,
+            CalculationWinnerPointsListener::class,
+        ]
+
     ];
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Events\RecordUserOnMatchEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function Symfony\Component\String\s;
 
 class LotteryGameMatchUser extends Model
 {
@@ -16,5 +18,9 @@ class LotteryGameMatchUser extends Model
         'id',
         'user_id',
         'lottery_game_match_id'
+    ];
+
+    protected $dispatchesEvents = [
+        'saving' => RecordUserOnMatchEvent::class,
     ];
 }
