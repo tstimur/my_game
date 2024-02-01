@@ -26,8 +26,9 @@ class CalculationWinnerPointsListener
     {
         $match = $event->getGameMatch();
         $gamerId = LotteryGameMatch::find($match->id)->game_id;
-        $rewardPoints = LotteryGame::find($gamerId)->reward_points;
-        $userPoints = User::find($match->winner_id)->points;
-        User::where('id', $match->winner_id)->points = $userPoints + $rewardPoints;
+        $pointsForWin = LotteryGame::find($gamerId)->reward_points;
+        $winner = User::find($match->winner_id);
+        $winner->points += $pointsForWin;
+        $winner->save();
     }
 }

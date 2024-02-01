@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\LotteryGameMatch;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -40,4 +41,10 @@ class MatchFinishEvent
     {
         return $this->gameMatch;
     }
+
+//    public function calculatePoints($userPoints, $rewardPoints)
+//    {
+//        $match = $this->getGameMatch();
+//        User::where('id', $match->winner_id)->points = $userPoints + $rewardPoints;
+//    }
 }
